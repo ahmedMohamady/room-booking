@@ -1,0 +1,35 @@
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: update
+    open-in-view: false
+    defer-datasource-initialization: true
+  h2.console.enabled: true
+  sql:
+    init:
+      data-locations: classpath:sql/import.sql
+      mode: always
+  jackson:
+    default-property-inclusion: NON_NULL
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: mashreq.interview@gmail.com
+    password: kzkk ltss lokd ydis
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
