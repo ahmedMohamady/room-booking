@@ -144,6 +144,20 @@ class BookingControllerIT {
         assertEquals(0, response.size());
     }
 
+    @Test
+    void getBooking_whenBooking_thenStatus200()
+            throws Exception {
+        bookAllRooms();
+        var result = mvc.perform(MockMvcRequestBuilders.get("/booking")
+                        .contentType(MediaType.APPLICATION_JSON).queryParam("startTime","10:00").queryParam("endTime","14:00"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON)).andReturn();
+        var response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<List<BookingDTO>>() {
+        });
+        assertEquals(4, response.size());
+    }
+
+
 
 
     private void bookRoomWith3Capacity() {
